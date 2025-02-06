@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 Youth Math, Science &amp; Technology Festival</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splash">
+    <canvas id="splashCanvas"></canvas>
+    <div id="splashCountdown">5...</div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="mainContent">
+    <header>
+      <h1>2026 Youth Math, Science &amp; Technology Festival</h1>
+      <div class="subtitle">Computer Science Unit</div>
+    </header>
+
+    <!-- Countdown Timer for Event -->
+    <section class="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="images/circuit-board.jpg" alt="Circuit Board">
+        </div>
+        <div class="carousel-item">
+          <img src="images/ai-neural-network.jpg" alt="AI Neural Network">
+        </div>
+        <div class="carousel-item">
+          <img src="images/robotics.jpg" alt="Robotics">
+        </div>
+      </div>
+      <div class="countdown">
+        <div>
+          <div id="days" class="time">0</div>
+          <div class="label">Days</div>
+        </div>
+        <div>
+          <div id="hours" class="time">0</div>
+          <div class="label">Hours</div>
+        </div>
+        <div>
+          <div id="minutes" class="time">0</div>
+          <div class="label">Minutes</div>
+        </div>
+        <div>
+          <div id="seconds" class="time">0</div>
+          <div class="label">Seconds</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Audio Teaser Section -->
+    <section>
+      <h2 style="color:#0f0;">Hear the Future</h2>
+      <audio controls autoplay loop style="width: 300px;">
+        <source src="audio/digital-hum.wav" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </section>
+
+    <!-- Footer with Hashtags -->
+    <footer >
+      <p>#CodeTheFuture #YMSAT2026 #CSUnitHosts</p>
+    </footer>
+  </div>
+
+  <!-- JavaScript: Binary Rain Effect on Splash Screen -->
+  <script>
+    // Canvas setup for binary rain
+    const canvas = document.getElementById('splashCanvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    const letters = "01";
+    const fontSize = 56;
+    const columns = Math.floor(width / fontSize);
+    const drops = Array(columns).fill(0).map(() => Math.random() * height);
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, width, height);
+      ctx.fillStyle = "#0f0"; // Neon green
+      ctx.font = fontSize + "px monospace";
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+    let matrixInterval = setInterval(draw, 33);
+
+    // Resize canvas on window change
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    // Splash Countdown (5...4...3...2...1... GO!)
+    let splashCountdown = document.getElementById("splashCountdown");
+    let splashTime = 5;
+    const splashTimer = setInterval(() => {
+      splashTime--;
+      if (splashTime > 0) {
+        splashCountdown.textContent = splashTime + '...';
+      } else {
+        splashCountdown.textContent = "GO!";
+        clearInterval(splashTimer);
+        // Fade out splash screen after a short delay
+        setTimeout(() => {
+          const splash = document.getElementById("splash");
+          splash.style.transition = "opacity 1s ease";
+          splash.style.opacity = 0;
+          setTimeout(() => {
+            splash.style.display = "none";
+            document.getElementById("mainContent").style.display = "block";
+          }, 1000);
+        }, 1000);
+      }
+    }, 1000);
+  </script>
+
+  <!-- JavaScript: Countdown Timer for the Festival -->
+  <script>
+    // Set the target event date (customize as needed)
+    const eventDate = new Date("February 1, 2026 00:00:00").getTime();
+    const countdownFunction = setInterval(() => {
+      const now = new Date().getTime();
+      const timeLeft = eventDate - now;
+
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+
+      if (timeLeft < 0) {
+        clearInterval(countdownFunction);
+        document.querySelector(".countdown").innerHTML = "<h2>The Festival Has Begun!</h2>";
+      }
+    }, 1000);
+
+    // Show footer after 5 seconds
+    setTimeout(() => {
+      document.querySelector("footer").style.display = "block";
+    }, 5000);
+  </script>
+</body>
+</html>
+

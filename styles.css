@@ -1,0 +1,186 @@
+    /* Global Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Courier New', Courier, monospace;
+        background: #000;
+        overflow: hidden;
+        color: #fff;
+      }
+      /* SPLASH SCREEN */
+      #splash {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        z-index: 1000;
+      }
+      #splashCanvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+      #splashCountdown {
+        font-size: 4rem;
+        color: #0f0; /* Neon green */
+        text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
+      }
+      /* MAIN CONTENT */
+      #mainContent {
+        display: none;
+        position: relative;
+        padding: 20px;
+        text-align: center;
+        background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 100%);
+        min-height: 100vh;
+        overflow-y: auto;
+      }
+      header {
+        margin-top: 50px;
+      }
+      header h1 {
+        font-size: 2.5rem;
+        color: #0ff; /* Neon cyan */
+        text-transform: uppercase;
+        animation: glitch 1s infinite;
+      }
+      @keyframes glitch {
+        0% { text-shadow: 2px 2px 0 #f0f, -2px -2px 0 #0ff; }
+        20% { text-shadow: -2px 2px 0 #0ff, 2px -2px 0 #f0f; }
+        40% { text-shadow: 2px -2px 0 #f0f, -2px 2px 0 #0ff; }
+        60% { text-shadow: -2px -2px 0 #0ff, 2px 2px 0 #f0f; }
+        80% { text-shadow: 2px 2px 0 #f0f, -2px -2px 0 #0ff; }
+        100% { text-shadow: -2px -2px 0 #0ff, 2px 2px 0 #f0f; }
+      }
+      .subtitle {
+        margin-top: 20px;
+        font-size: 1.8rem;
+        color: #fff;
+        opacity: 0.8;
+        font-weight: bold;
+      }
+      /* Countdown Timer for Event */
+      .countdown {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 30px 0;
+      }
+      .countdown div {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border-radius: 8px;
+        min-width: 80px;
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+      }
+      .time {
+        font-size: 2.5rem;
+        color: #f0f; /* Electric purple */
+      }
+      .label {
+        font-size: 1rem;
+        margin-top: 5px;
+        color: #fff;
+      }
+      /* Tech-Themed Images */
+      .tech-motifs {
+        margin: 40px auto;
+        max-width: 800px;
+      }
+      .tech-motifs img {
+        width: 100%;
+        margin-bottom: 20px;
+        border: 2px solid #0ff;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+      }
+      .tech-motifs img:hover {
+        transform: scale(1.05);
+      }
+      /* Footer with Hashtags */
+      footer {
+        margin-top: 40px;
+        font-size: 0.9rem;
+        color: #aaa;
+      }
+      footer p {
+        margin: 5px;
+      }
+      footer a {
+        color: #0ff;
+        text-decoration: none;
+      }
+
+
+
+/*Carousel slideshow */
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  animation: slide 20s infinite;
+}
+
+.carousel-item {
+  width: 100%;
+  flex: 1 0 100%;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes slide {
+  0% { transform: translateX(0%); }
+  33% { transform: translateX(-100%); }
+  66% { transform: translateX(-200%); }
+  100% { transform: translateX(0%); }
+}
+
+.countdown {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+}
+
+
+/*footer*/
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    z-index: 20;
+    display: none; /* Initially hidden */
+  }
