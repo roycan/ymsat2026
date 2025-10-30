@@ -56,6 +56,9 @@
         text-transform: uppercase;
         animation: glitch 1s infinite;
       }
+      header #sYMSAT, header .subtitle2 {
+        display: none;
+      }
       @keyframes glitch {
         0% { text-shadow: 2px 2px 0 #f0f, -2px -2px 0 #0ff; }
         20% { text-shadow: -2px 2px 0 #0ff, 2px -2px 0 #f0f; }
@@ -184,3 +187,18 @@ footer {
     z-index: 20;
     display: none; /* Initially hidden */
   }
+
+ @media screen and (max-width: 600px) {
+  header {
+    font-size: 0.25em;
+  }
+  header #sYMSAT{
+    display: block;
+  }
+  header #lYMSAT {
+    display: none;
+  }
+  .countdown > div:nth-child(3), .countdown > div:nth-child(4)  {
+    display: none;
+  }
+}
